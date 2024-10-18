@@ -7,6 +7,9 @@ const config: Config = {
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],
       },
+      colors: {
+        "light-black": "#020203",
+      },
     },
   },
   plugins: [],
