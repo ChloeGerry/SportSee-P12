@@ -1,12 +1,12 @@
 type NavigationLinkProps = {
   href: string;
-  pageName: string;
+  children: React.ReactNode;
 };
 
-const NavigationLink = ({ href, pageName }: NavigationLinkProps) => {
+const NavigationLink = ({ href, children }: NavigationLinkProps) => {
   return (
     <a href={href} className="text-white">
-      {pageName}
+      {children}
     </a>
   );
 };

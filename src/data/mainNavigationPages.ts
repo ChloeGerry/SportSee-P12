@@ -1,9 +1,9 @@
-type NavigationPage = {
+type mainNavigationPage = {
   href: string;
   pageName: string;
 };
 
-export const navigationPages: NavigationPage[] = [
+export const mainNavigationPages: mainNavigationPage[] = [
   {
     href: "#",
     pageName: "Accueil",
