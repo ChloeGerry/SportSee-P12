@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 type NavigationLinkProps = {
   href: string;
   children: React.ReactNode;
@@ -5,9 +7,9 @@ type NavigationLinkProps = {
 
 const NavigationLink = ({ href, children }: NavigationLinkProps) => {
   return (
-    <a href={href} className="text-white">
+    <NavLink to={href} className="text-white">
       {children}
-    </a>
+    </NavLink>
   );
 };
 
