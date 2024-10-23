@@ -9,6 +9,7 @@ const config: Config = {
       },
       colors: {
         "light-black": "#020203",
+        red: "#E60000",
       },
     },
   },
