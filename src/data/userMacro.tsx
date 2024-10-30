@@ -1,4 +1,5 @@
 import { UserMainDataType } from "@/services/types";
+import { GRAMME, KILOCALORY } from "@/utils/constants";
 
 export const getUserMacro = (user: UserMainDataType | undefined) => {
   return [
@@ -18,7 +19,7 @@ export const getUserMacro = (user: UserMainDataType | undefined) => {
         </svg>
       ),
       iconBackground: "bg-red-icon",
-      macroValue: user?.keyData.calorieCount + "kCal" ?? 0,
+      macroValue: user?.keyData.calorieCount ?? 0 + KILOCALORY,
       macroName: "Calories",
     },
     {
@@ -37,7 +38,7 @@ export const getUserMacro = (user: UserMainDataType | undefined) => {
         </svg>
       ),
       iconBackground: "bg-blue-icon",
-      macroValue: user?.keyData.proteinCount + "g" ?? 0,
+      macroValue: user?.keyData.proteinCount ?? 0 + GRAMME,
       macroName: "Proteines",
     },
     {
@@ -64,7 +65,7 @@ export const getUserMacro = (user: UserMainDataType | undefined) => {
         </svg>
       ),
       iconBackground: "bg-yellow-icon",
-      macroValue: user?.keyData.carbohydrateCount + "g" ?? 0,
+      macroValue: user?.keyData.carbohydrateCount ?? 0 + GRAMME,
       macroName: "Glucides",
     },
     {
@@ -93,7 +94,7 @@ export const getUserMacro = (user: UserMainDataType | undefined) => {
         </svg>
       ),
       iconBackground: "bg-pink-icon",
-      macroValue: user?.keyData.lipidCount + "g" ?? 0,
+      macroValue: user?.keyData.lipidCount ?? 0 + GRAMME,
       macroName: "Lipides",
     },
   ];
