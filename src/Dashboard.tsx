@@ -2,11 +2,13 @@ import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Sidebar from "./components/layout/Sidebar";
 import Header from "./components/layout/Header";
+import MacroCard from "./components/MacroCard";
 import { useUserMainData } from "./services/useUserMainData";
 import { useUserActivity } from "./services/useUserActivity";
 import { useUserAverageSessions } from "./services/useUserAverageSessions";
 import { useUserPerformance } from "./services/useUserPerformance";
 import { UserMainDataType } from "./services/types";
+import { getUserMacro } from "./data/userMacro";
 
 const Dashboard = () => {
   const userId = import.meta.env.VITE_USER_ID;
@@ -27,6 +29,8 @@ const Dashboard = () => {
     }
   }, [userId, userParamId.id]);
 
+  const userMacro = getUserMacro(user);
+
   return (
     <>
       <Header />
@@ -40,6 +44,19 @@ const Dashboard = () => {
           <p className="text-lg font-normal mt-10">
             Félicitations ! Vous avez explosé vos objectifs hier 👏
           </p>
+          <div className="flex flex-col gap-10">
+            {userMacro.map(({ icon, macroValue, macroName, iconBackground }) => {
+              return (
+                <MacroCard
+                  key={macroName}
+                  icon={icon}
+                  macroValue={macroValue}
+                  macroName={macroName}
+                  iconBackground={iconBackground}
+                />
+              );
+            })}
+          </div>
         </main>
         <Sidebar />
       </div>
