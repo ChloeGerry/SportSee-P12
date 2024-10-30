@@ -9,7 +9,17 @@ const config: Config = {
       },
       colors: {
         "light-black": "#020203",
+        "dark-grey": "#282D30",
+        grey: "#74798C",
         red: "#E60000",
+        "light-grey": "#FBFBFB",
+        "red-icon": "#FF0000",
+        "blue-icon": "#4AB8FF",
+        "yellow-icon": "#F9CE23",
+        "pink-icon": "#FD5181",
+      },
+      spacing: {
+        "60": "60px",
       },
     },
   },
