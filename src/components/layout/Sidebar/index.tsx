@@ -1,5 +1,7 @@
 import { sidebarNavigation } from "@/data/sidebarNavigationPages";
-import NavigationLink from "../../NavigationLink";
+import NavigationLink from "@/components/NavigationLink";
+
+const currentDate = new Date().getFullYear();
 
 const Sidebar = () => {
   return (
@@ -12,7 +14,7 @@ const Sidebar = () => {
         ))}
       </div>
       <p className="text-white text-xs font-medium -rotate-90 absolute ml-14 -left-16 bottom-6">
-        Copiryght, SportSee 2020
+        Copyright, SportSee {currentDate}
       </p>
     </div>
   );
