@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { UserActivityType } from "./types";
+import { UserActivitiesType } from "./types";
 
-export const useUserActivity = (): UserActivityType[] | null => {
-  const [userActivity, setUserActivity] = useState<UserActivityType[] | null>(null);
+export const useUserActivity = (): UserActivitiesType[] | null => {
+  const [userActivity, setUserActivity] = useState<UserActivitiesType[] | null>(null);
 
   const getUserActivity = async (): Promise<void> => {
     try {

@@ -14,7 +14,7 @@ export type UserMainDataType = {
   };
 };
 
-export type UserPerformanceType = {
+export type UserPerformancesType = {
   userId: number;
   kind: {
     1: "cardio";
@@ -27,16 +27,16 @@ export type UserPerformanceType = {
   data: {
     value: number;
     kind: number;
-  }[];
+  };
 };
 
-export type UserActivityType = {
+export type UserActivitiesType = {
   userId: number;
   sessions: {
     day: string;
     kilogram: number;
     calories: number;
-  }[];
+  };
 };
 
 export type UserAverageSessionsType = {
@@ -44,5 +44,5 @@ export type UserAverageSessionsType = {
   sessions: {
     day: number;
     sessionLength: number;
-  }[];
+  };
 };

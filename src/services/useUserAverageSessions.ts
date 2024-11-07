@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { UserAverageSessionsType } from "./types";
 
-export const useUserAverageSessions = (): UserAverageSessionsType | null => {
-  const [userAverageSessions, setUserAverageSessions] = useState<UserAverageSessionsType | null>(
+export const useUserAverageSessions = (): UserAverageSessionsType[] | null => {
+  const [userAverageSessions, setUserAverageSessions] = useState<UserAverageSessionsType[] | null>(
     null
   );
 
