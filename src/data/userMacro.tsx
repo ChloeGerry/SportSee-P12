@@ -19,7 +19,7 @@ export const getUserMacro = (user: UserMainDataType | undefined) => {
         </svg>
       ),
       iconBackground: "bg-red-icon",
-      macroValue: user?.keyData.calorieCount ?? 0 + KILOCALORY,
+      macroValue: `${user?.keyData.calorieCount ?? 0} ${KILOCALORY}`,
       macroName: "Calories",
     },
     {
@@ -38,7 +38,7 @@ export const getUserMacro = (user: UserMainDataType | undefined) => {
         </svg>
       ),
       iconBackground: "bg-blue-icon",
-      macroValue: user?.keyData.proteinCount ?? 0 + GRAMME,
+      macroValue: `${user?.keyData.proteinCount ?? 0} ${GRAMME}`,
       macroName: "Proteines",
     },
     {
@@ -65,7 +65,7 @@ export const getUserMacro = (user: UserMainDataType | undefined) => {
         </svg>
       ),
       iconBackground: "bg-yellow-icon",
-      macroValue: user?.keyData.carbohydrateCount ?? 0 + GRAMME,
+      macroValue: `${user?.keyData.carbohydrateCount ?? 0} ${GRAMME}`,
       macroName: "Glucides",
     },
     {
@@ -94,7 +94,7 @@ export const getUserMacro = (user: UserMainDataType | undefined) => {
         </svg>
       ),
       iconBackground: "bg-pink-icon",
-      macroValue: user?.keyData.lipidCount ?? 0 + GRAMME,
+      macroValue: `${user?.keyData.lipidCount ?? 0} ${GRAMME}`,
       macroName: "Lipides",
     },
   ];
