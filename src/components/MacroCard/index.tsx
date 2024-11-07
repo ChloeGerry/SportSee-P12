@@ -7,7 +7,7 @@ type MacroCardProps = {
 
 const MacroCard = ({ icon, macroValue, macroName, iconBackground }: MacroCardProps) => {
   return (
-    <article className="flex bg-light-grey py-10 pr-12 pl-10 gap-6 w-64">
+    <article className="flex bg-light-grey py-10 pr-12 pl-10 gap-6 w-72">
       <div className={`w-60 h-60 ${iconBackground} opacity-10 absolute rounded-md`}></div>
       <div className="p-5  rounded-md">{icon}</div>
       <div>

@@ -21,6 +21,9 @@ const config: Config = {
       spacing: {
         "60": "60px",
       },
+      borderRadius: {
+        small: "5px",
+      },
     },
   },
   plugins: [],
