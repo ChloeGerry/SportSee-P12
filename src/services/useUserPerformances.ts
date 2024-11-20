@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { UserPerformancesType } from "./types";
 
-export const useUserPerformance = (): UserPerformancesType[] | null => {
+export const useUserPerformances = (): UserPerformancesType[] | null => {
   const [userPerformance, setUserPerformance] = useState<UserPerformancesType[] | null>(null);
 
   const getUserMainData = async (): Promise<void> => {
