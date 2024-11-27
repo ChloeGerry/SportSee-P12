@@ -5,7 +5,8 @@ export type UserMainDataType = {
     lastName: string;
     age: number;
   };
-  todayScore: number;
+  todayScore?: number;
+  score?: number;
   keyData: {
     calorieCount: number;
     proteinCount: number;
@@ -27,7 +28,7 @@ export type UserPerformancesType = {
   data: {
     value: number;
     kind: number;
-  };
+  }[];
 };
 
 export type UserActivitiesType = {
@@ -36,7 +37,7 @@ export type UserActivitiesType = {
     day: string;
     kilogram: number;
     calories: number;
-  };
+  }[];
 };
 
 export type UserAverageSessionsType = {
@@ -44,5 +45,5 @@ export type UserAverageSessionsType = {
   sessions: {
     day: number;
     sessionLength: number;
-  };
+  }[];
 };
