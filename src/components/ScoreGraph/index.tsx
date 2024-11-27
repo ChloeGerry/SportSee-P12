@@ -7,11 +7,13 @@ type ScoreGraphType = {
 const ScoreGraph = ({ userScore }: ScoreGraphType) => {
   const width = 258;
   const height = 263;
+  const backgroundCircleRadius = 90;
+  const foregroundCircleRadius = 80;
 
   if (!userScore) return null;
 
   const score = userScore * 100;
-  const circumference = 2 * Math.PI * 90;
+  const circumference = 2 * Math.PI * backgroundCircleRadius;
   const filledLength = (score / 100) * circumference;
   const emptyLength = circumference - filledLength;
 
@@ -23,13 +25,13 @@ const ScoreGraph = ({ userScore }: ScoreGraphType) => {
       <circle
         cx={width / 2}
         cy={height / 2}
-        r={80}
+        r={foregroundCircleRadius}
         style={{ strokeWidth: 10, fill: "#ffff", stroke: "#ffff" }}
       />
       <circle
         cx={width / 2}
         cy={height / 2}
-        r={90}
+        r={backgroundCircleRadius}
         style={{
           strokeWidth: 10,
           fill: "none",
