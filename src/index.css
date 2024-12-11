@@ -4,4 +4,6 @@
 
 :root {
   font-family: Roboto, sans-serif;
+  max-width: 1440px;
+  margin: 0 auto;
 }
