@@ -1,7 +1,7 @@
 import { UserMainDataType } from "@/services/types";
 import { GRAMME, KILOCALORY } from "@/utils/constants";
 
-export const getUserMacro = (user: UserMainDataType | undefined) => {
+export const getUserMacro = (user?: UserMainDataType) => {
   return [
     {
       icon: (
