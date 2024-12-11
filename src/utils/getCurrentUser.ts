@@ -8,5 +8,5 @@ import {
 export const getCurrentUser = (
   users: UserPerformancesType[] | UserActivitiesType[] | UserAverageSessionsType[]
 ) => {
-  return users.find((currentUser) => currentUser.userId === Number(USER_ID));
+  return users.find((currentUser) => currentUser.userId === Number(USER_ID)) ?? null;
 };
