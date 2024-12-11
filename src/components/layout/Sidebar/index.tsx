@@ -5,7 +5,7 @@ const currentDate = new Date().getFullYear();
 
 const Sidebar = () => {
   return (
-    <div className="bg-light-black flex flex-col px-8 w-min justify-center">
+    <div className="bg-light-black flex flex-col px-8 w-min justify-center relative">
       <div className="flex flex-col gap-6">
         {sidebarNavigation.map(({ href, icon }) => (
           <NavigationLink key={href} href={href}>
@@ -13,7 +13,7 @@ const Sidebar = () => {
           </NavigationLink>
         ))}
       </div>
-      <p className="text-white text-xs font-medium -rotate-90 absolute ml-14 -left-16 -bottom-36">
+      <p className="text-white text-xs font-medium -rotate-90 absolute left-0 bottom-28 whitespace-nowrap">
         Copyright, SportSee {currentDate}
       </p>
     </div>
