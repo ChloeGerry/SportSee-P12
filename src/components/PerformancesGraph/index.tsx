@@ -12,7 +12,7 @@ const labels: { [key: number]: string } = {
 };
 
 type PerformancesGraphProps = {
-  userPerformances: UserPerformancesType | null;
+  userPerformances: UserPerformancesType;
 };
 
 const PerformancesGraph = (userPerformances: PerformancesGraphProps) => {
@@ -23,8 +23,6 @@ const PerformancesGraph = (userPerformances: PerformancesGraphProps) => {
   const centerX = width / 2;
   const centerY = height / 2;
   const numberOfSides = 6;
-
-  if (!userPerformances.userPerformances) return null;
 
   const userKind = userPerformances.userPerformances.kind;
 
