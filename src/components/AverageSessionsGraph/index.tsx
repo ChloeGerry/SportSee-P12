@@ -4,7 +4,7 @@ import { UserAverageSessionsType } from "@/services/types";
 import { colors } from "@/utils/constants";
 
 type AverageSessionsGraphProps = {
-  userAverageSessions: UserAverageSessionsType | null;
+  userAverageSessions: UserAverageSessionsType;
 };
 
 const AverageSessionsGraph = (userAverageSessions: AverageSessionsGraphProps) => {
@@ -14,8 +14,6 @@ const AverageSessionsGraph = (userAverageSessions: AverageSessionsGraphProps) =>
 
   const radius = 4;
   const days = ["L", "M", "M", "J", "V", "S", "D"];
-
-  if (!userAverageSessions.userAverageSessions) return null;
 
   const [dailySessionLenght, setDailySessionLenght] = useState<{
     sessionLength: number;
