@@ -24,6 +24,9 @@ const config: Config = {
       borderRadius: {
         small: "5px",
       },
+      boxShadow: {
+        "extra-small": "0 4px 4px 0px #00000040",
+      },
     },
   },
   plugins: [],
