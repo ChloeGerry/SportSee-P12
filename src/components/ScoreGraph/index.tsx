@@ -1,7 +1,7 @@
 import { colors } from "@/utils/constants";
 
 type ScoreGraphType = {
-  userScore?: number;
+  userScore: number;
 };
 
 const ScoreGraph = ({ userScore }: ScoreGraphType) => {
@@ -9,8 +9,6 @@ const ScoreGraph = ({ userScore }: ScoreGraphType) => {
   const height = 263;
   const backgroundCircleRadius = 90;
   const foregroundCircleRadius = 80;
-
-  if (!userScore) return null;
 
   const score = userScore * 100;
   const circumference = 2 * Math.PI * backgroundCircleRadius;
