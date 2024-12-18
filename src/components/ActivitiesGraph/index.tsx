@@ -139,8 +139,8 @@ const ActivitiesGraph = (userActivities: ActivitiesGraphProps) => {
               radius: 4,
               margin: margin.bottom,
             })}
-            style={{ fill: colors.red }}
-            transform={`translate(${(xScale.bandwidth() - 8) / 2 - 8}, 0)`}
+            style={{ fill: colors.red, cursor: "pointer" }}
+            transform={`translate(${(xScale.bandwidth() - 6) / 2 - 6}, 0)`}
             onMouseEnter={() =>
               setDailyActivity({
                 day: day,
@@ -163,8 +163,8 @@ const ActivitiesGraph = (userActivities: ActivitiesGraphProps) => {
               radius: 4,
               margin: margin.bottom,
             })}
-            style={{ fill: colors.darkGrey }}
-            transform={`translate(${(xScale.bandwidth() + 8) / 2 + 8}, 0)`}
+            style={{ fill: colors.darkGrey, cursor: "pointer" }}
+            transform={`translate(${(xScale.bandwidth() + 6) / 2 + 6}, 0)`}
             onMouseEnter={() =>
               setDailyActivity({
                 day: day,
