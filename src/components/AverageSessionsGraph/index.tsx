@@ -31,11 +31,13 @@ const AverageSessionsGraph = (userAverageSessions: AverageSessionsGraphProps) =>
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
 
+  // axe des abscisses avec les jours
   const xScale: d3.ScalePoint<string> = d3
     .scalePoint()
     .domain(formattedAverageSessions.map(({ day, index }) => `${day}-${index}`))
     .range([0, innerWidth]);
 
+  // axe des ordonnées avec la durée des sessions
   const yScale: d3.ScaleLinear<number, number> = d3
     .scaleLinear()
     .domain([0, d3.max(formattedAverageSessions, ({ sessionLength }) => sessionLength) ?? 0])
@@ -62,11 +64,13 @@ const AverageSessionsGraph = (userAverageSessions: AverageSessionsGraphProps) =>
           />
         )}
 
+        {/* ligne des sessions */}
         <path
           d={linePath ?? ""}
           style={{ fill: "none", stroke: "#fff", strokeWidth: 2, opacity: 0.5 }}
         />
 
+        {/* légende du graphique */}
         <text x={32} y={32} style={{ fontSize: "15px", fill: "#fff", opacity: 0.5 }}>
           Durée moyenne des
         </text>
@@ -112,6 +116,8 @@ const AverageSessionsGraph = (userAverageSessions: AverageSessionsGraphProps) =>
           </>
         )}
       </g>
+
+      {/* axe des abscisses */}
       <g transform={`translate(${margin.left}, ${margin.top})`}>
         {formattedAverageSessions.map(({ sessionLength, day, index }) => (
           <text
