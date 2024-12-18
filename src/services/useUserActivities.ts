@@ -1,28 +1,40 @@
 import { useEffect, useState } from "react";
-import { UserActivitiesType } from "./types";
+import { MOCKED_DATA_ENABLED } from "@/config";
+import { getCurrentUser } from "@/utils/getCurrentUser";
+import { UserActivitiesType, UserAverageSessionsType, UserPerformancesType } from "./types";
 
-export const useUserActivities = (): UserActivitiesType[] | null => {
-  const [userActivity, setUserActivity] = useState<UserActivitiesType[] | null>(null);
+export const useUserActivities = (id: number): UserActivitiesType | null => {
+  const [userActivities, setUserActivities] = useState<
+    UserActivitiesType | UserPerformancesType | UserAverageSessionsType | null
+  >(null);
 
-  const getUserActivity = async (): Promise<void> => {
+  const getuserActivities = async (id: number): Promise<void> => {
     try {
-      const response = await fetch("/userActivity.json");
-      const currentUserActivity = await response.json();
+      const response = MOCKED_DATA_ENABLED
+        ? await fetch("/userActivities.json")
+        : await fetch(`http://localhost:3000/user/${id}/activity`);
+      const currentuserActivities = await response.json();
 
-      if (!currentUserActivity) {
+      if (!currentuserActivities) {
         console.log("No user activity found");
-        setUserActivity(null);
+        setUserActivities(null);
       }
 
-      setUserActivity(currentUserActivity);
+      const formattedActivities = MOCKED_DATA_ENABLED
+        ? getCurrentUser(currentuserActivities)
+        : null;
+
+      MOCKED_DATA_ENABLED
+        ? setUserActivities(formattedActivities)
+        : setUserActivities(currentuserActivities.data);
     } catch (error) {
       console.error("Error while fetching user activity", error);
     }
   };
 
   useEffect(() => {
-    getUserActivity();
+    getuserActivities(id);
   }, []);
 
-  return userActivity;
+  return userActivities as UserActivitiesType;
 };

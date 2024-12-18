@@ -1,27 +1,41 @@
 import { useEffect, useState } from "react";
-import { UserPerformancesType } from "./types";
+import { MOCKED_DATA_ENABLED } from "@/config";
+import { getCurrentUser } from "@/utils/getCurrentUser";
+import { UserActivitiesType, UserAverageSessionsType, UserPerformancesType } from "./types";
 
-export const useUserPerformances = (): UserPerformancesType[] | null => {
-  const [userPerformance, setUserPerformance] = useState<UserPerformancesType[] | null>(null);
+export const useUserPerformances = (id: number): UserPerformancesType | null => {
+  const [userPerformance, setUserPerformance] = useState<
+    UserPerformancesType | UserActivitiesType | UserAverageSessionsType | null
+  >(null);
 
-  const getUserMainData = async (): Promise<void> => {
+  const getUserPerformances = async (id: number): Promise<void> => {
     try {
-      const response = await fetch("/userPerformance.json");
-      const currentUserPerformance = await response.json();
+      const response = MOCKED_DATA_ENABLED
+        ? await fetch("/userPerformance.json")
+        : await fetch(`http://localhost:3000/user/${id}/performance`);
 
-      if (!currentUserPerformance) {
+      const currentUserPerformances = await response.json();
+
+      if (!currentUserPerformances) {
+        console.log("No user performances found");
         setUserPerformance(null);
       }
 
-      setUserPerformance(currentUserPerformance);
+      const formattedPerfomances = MOCKED_DATA_ENABLED
+        ? getCurrentUser(currentUserPerformances)
+        : null;
+
+      MOCKED_DATA_ENABLED
+        ? setUserPerformance(formattedPerfomances)
+        : setUserPerformance(currentUserPerformances.data);
     } catch (error) {
-      console.error(error);
+      console.error("Error while fetching user performances", error);
     }
   };
 
   useEffect(() => {
-    getUserMainData();
+    getUserPerformances(id);
   }, []);
 
-  return userPerformance;
+  return userPerformance as UserPerformancesType;
 };
