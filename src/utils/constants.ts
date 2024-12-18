@@ -1,5 +1,7 @@
 export const KILOCALORY = "kCal";
+
 export const GRAMME = "g";
+
 export const colors = {
   red: "#E60000",
   extraLightGrey: "#e0e0e0",
