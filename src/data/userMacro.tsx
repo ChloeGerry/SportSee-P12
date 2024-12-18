@@ -1,7 +1,9 @@
 import { UserMainDataType } from "@/services/types";
 import { GRAMME, KILOCALORY } from "@/utils/constants";
 
-export const getUserMacro = (user?: UserMainDataType) => {
+export const getUserMacro = (user: UserMainDataType) => {
+  const formattedCalories = user.keyData.calorieCount.toLocaleString().replace(/\s/g, ",");
+
   return [
     {
       icon: (
@@ -19,7 +21,7 @@ export const getUserMacro = (user?: UserMainDataType) => {
         </svg>
       ),
       iconBackground: "bg-red-icon",
-      macroValue: `${user?.keyData.calorieCount ?? 0} ${KILOCALORY}`,
+      macroValue: `${formattedCalories} ${KILOCALORY}`,
       macroName: "Calories",
     },
     {
@@ -38,7 +40,7 @@ export const getUserMacro = (user?: UserMainDataType) => {
         </svg>
       ),
       iconBackground: "bg-blue-icon",
-      macroValue: `${user?.keyData.proteinCount ?? 0} ${GRAMME}`,
+      macroValue: `${user.keyData.proteinCount} ${GRAMME}`,
       macroName: "Proteines",
     },
     {
@@ -65,7 +67,7 @@ export const getUserMacro = (user?: UserMainDataType) => {
         </svg>
       ),
       iconBackground: "bg-yellow-icon",
-      macroValue: `${user?.keyData.carbohydrateCount ?? 0} ${GRAMME}`,
+      macroValue: `${user.keyData.carbohydrateCount} ${GRAMME}`,
       macroName: "Glucides",
     },
     {
@@ -94,7 +96,7 @@ export const getUserMacro = (user?: UserMainDataType) => {
         </svg>
       ),
       iconBackground: "bg-pink-icon",
-      macroValue: `${user?.keyData.lipidCount ?? 0} ${GRAMME}`,
+      macroValue: `${user.keyData.lipidCount} ${GRAMME}`,
       macroName: "Lipides",
     },
   ];
