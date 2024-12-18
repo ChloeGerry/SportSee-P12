@@ -11,47 +11,28 @@ import { useUserActivities } from "@/services/useUserActivities";
 import { useUserAverageSessions } from "@/services/useUserAverageSessions";
 import { useUserPerformances } from "@/services/useUserPerformances";
 import { getUserMacro } from "@/data/userMacro";
-import { getCurrentUser } from "@/utils/getCurrentUser";
 import { USER_ID } from "@/config";
-import {
-  UserActivitiesType,
-  UserAverageSessionsType,
-  UserMainDataType,
-  UserPerformancesType,
-} from "@/services/types";
 
 const Dashboard = () => {
-  const usersData = useUserMainData();
-  const usersActivity = useUserActivities();
-  const usersAverageSessions = useUserAverageSessions();
-  const usersPerformances = useUserPerformances();
+  const userData = useUserMainData(Number(USER_ID));
+  const userActivities = useUserActivities(Number(USER_ID));
+  const userAverageSessions = useUserAverageSessions(Number(USER_ID));
+  const userPerformances = useUserPerformances(Number(USER_ID));
 
-  const user: UserMainDataType | undefined = usersData?.find(
-    (userData) => userData.id === Number(USER_ID)
-  );
+  if (!userData) return <Error />;
 
-  const userAverageSessions =
-    usersAverageSessions &&
-    (getCurrentUser(usersAverageSessions) as UserAverageSessionsType | null);
+  const userMacro = getUserMacro(userData);
 
-  const userActivities =
-    usersActivity && (getCurrentUser(usersActivity) as UserActivitiesType | null);
-
-  const userPerformances =
-    usersPerformances && (getCurrentUser(usersPerformances) as UserPerformancesType | null);
-
-  const userMacro = getUserMacro(user);
-
-  const userScore = user?.todayScore ?? user?.score;
+  const userScore = userData.todayScore ?? userData.score;
 
   return (
     <>
       <Header />
       <div className="flex flex-row-reverse justify-end">
         <main className="sm:mt-8 sm:mb-4 sm:mx-4 xl:mt-16 xl:mr-24 xl:mb-20 xl:ml-28">
-          {user && (
+          {userData && (
             <h1 className="font-medium text-5xl">
-              Bonjour <span className="text-red">{user?.userInfos.firstName}</span>
+              Bonjour <span className="text-red">{userData.userInfos.firstName}</span>
             </h1>
           )}
           <p className="text-lg font-normal mt-10">
