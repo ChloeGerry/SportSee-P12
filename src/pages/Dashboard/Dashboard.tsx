@@ -6,18 +6,52 @@ import ActivitiesGraph from "@/components/ActivitiesGraph";
 import PerformancesGraph from "@/components/PerformancesGraph";
 import ScoreGraph from "@/components/ScoreGraph";
 import Error from "@/components/Error";
-import { useUserMainData } from "@/services/useUserMainData";
-import { useUserActivities } from "@/services/useUserActivities";
-import { useUserAverageSessions } from "@/services/useUserAverageSessions";
-import { useUserPerformances } from "@/services/useUserPerformances";
+import { useFetcher } from "@/services/useFetcher";
 import { getUserMacro } from "@/data/userMacro";
 import { USER_ID } from "@/config";
+import {
+  UserActivitiesType,
+  UserAverageSessionsType,
+  UserMainDataType,
+  UserPerformancesType,
+} from "@/services/types";
 
 const Dashboard = () => {
-  const userData = useUserMainData(Number(USER_ID));
-  const userActivities = useUserActivities(Number(USER_ID));
-  const userAverageSessions = useUserAverageSessions(Number(USER_ID));
-  const userPerformances = useUserPerformances(Number(USER_ID));
+  const userData = useFetcher(
+    "/userMainData.json",
+    `user/${Number(USER_ID)}`,
+    "No user main data found",
+    Number(USER_ID),
+    true,
+    "Error while fetching user main data"
+  ) as UserMainDataType;
+
+  const userActivities = useFetcher(
+    "/userActivities.json",
+    `user/${Number(USER_ID)}/activity`,
+    "No user activity found",
+    Number(USER_ID),
+    false,
+    "Error while fetching user activity"
+  ) as UserActivitiesType;
+
+  const userAverageSessions = useFetcher(
+    "/userAverageSessions.json",
+    `user/${Number(USER_ID)}/average-sessions`,
+    "No user average sessions found",
+    Number(USER_ID),
+    false,
+    "Error while fetching user average sessions"
+  ) as UserAverageSessionsType;
+
+  const userPerformances = useFetcher(
+    "/userPerformance.json",
+    `user/${Number(USER_ID)}/performance`,
+    "No user performance found",
+    Number(USER_ID),
+    false,
+    "Error while fetching user performance"
+  ) as UserPerformancesType;
 
   if (!userData) return <Error />;
 
