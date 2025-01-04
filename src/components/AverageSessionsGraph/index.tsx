@@ -1,6 +1,7 @@
 import * as d3 from "d3";
 import { useState } from "react";
 import { UserAverageSessionsType } from "@/services/types";
+import { getAverage } from "@/utils/helpers/getAverage";
 import { colors } from "@/utils/constants";
 
 type AverageSessionsGraphProps = {
@@ -28,16 +29,26 @@ const AverageSessionsGraph = (userAverageSessions: AverageSessionsGraphProps) =>
     })
   );
 
+  const averageSession = getAverage(formattedAverageSessions);
+
+  formattedAverageSessions.unshift({ day: "", sessionLength: averageSession, index: "0" });
+
+  formattedAverageSessions.push({
+    day: "",
+    sessionLength: averageSession,
+    index: formattedAverageSessions.length.toString(),
+  });
+
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
 
-  // axe des abscisses avec les jours
+  // abscissa axis with days
   const xScale: d3.ScalePoint<string> = d3
     .scalePoint()
     .domain(formattedAverageSessions.map(({ day, index }) => `${day}-${index}`))
-    .range([0, innerWidth]);
+    .range([-32, innerWidth + 32]);
 
-  // axe des ordonnées avec la durée des sessions
+  // ordonnate axis with session length
   const yScale: d3.ScaleLinear<number, number> = d3
     .scaleLinear()
     .domain([0, d3.max(formattedAverageSessions, ({ sessionLength }) => sessionLength) ?? 0])
@@ -64,13 +75,13 @@ const AverageSessionsGraph = (userAverageSessions: AverageSessionsGraphProps) =>
           />
         )}
 
-        {/* ligne des sessions */}
+        {/* sessions lines */}
         <path
           d={linePath ?? ""}
           style={{ fill: "none", stroke: "#fff", strokeWidth: 2, opacity: 0.5 }}
         />
 
-        {/* légende du graphique */}
+        {/* graph legend */}
         <text x={32} y={32} style={{ fontSize: "15px", fill: "#fff", opacity: 0.5 }}>
           Durée moyenne des
         </text>
@@ -117,7 +128,7 @@ const AverageSessionsGraph = (userAverageSessions: AverageSessionsGraphProps) =>
         )}
       </g>
 
-      {/* axe des abscisses */}
+      {/* abscissa axis */}
       <g transform={`translate(${margin.left}, ${margin.top})`}>
         {formattedAverageSessions.map(({ sessionLength, day, index }) => (
           <text
