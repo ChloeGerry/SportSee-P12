@@ -38,33 +38,33 @@ const ActivitiesGraph = (userActivities: ActivitiesGraphProps) => {
   const maxWeight = Math.max(...weights);
   const minWeight = Math.min(...weights);
 
-  // axe des abscisses avec les jours
+  // abscissa axis with days
   const xScale = d3
     .scaleBand()
     .domain(formattedActivities.map(({ day }) => day))
     .range([margin.left, width - margin.right])
     .padding(0.2);
 
-  // colonne des calories
+  // calories column
   const yScale = d3
     .scaleLinear()
     .domain([0, Math.max(...formattedActivities.map(({ calories }) => calories))])
     .nice()
     .range([height - margin.bottom, height - margin.bottom - 145]);
 
-  // colonne des poids
+  // weight column
   const weightScale = d3
     .scaleLinear()
     .domain([minWeight - 1, maxWeight + 1])
     .range([height - margin.bottom, height - margin.bottom - 145]);
 
-  // axe des ordonnées avec les poids
+  // ordonate axis with weight
   const ticks = weightScale.domain();
   const weightMarks = [ticks[0], (ticks[0] + ticks[1]) / 2, ticks[1]];
 
   return (
     <svg width={width} height={height} className="rounded-small bg-light-grey">
-      {/* légendes du graphique */}
+      {/* graph legend */}
       <text x={32} y={32} style={{ fontSize: "15px", fontWeight: "500", fill: colors.darkGrey }}>
         Activité quotidienne
       </text>
@@ -78,13 +78,13 @@ const ActivitiesGraph = (userActivities: ActivitiesGraphProps) => {
         Calories brûlées (kCal)
       </text>
 
-      {/* axe des abscisses */}
+      {/* abscissa axis */}
       <g>
         {formattedActivities.map(({ day }) => (
           <text
             key={day}
             x={xScale(day)! + xScale.bandwidth() / 2}
-            y={height - margin.bottom + 15}
+            y={height - margin.bottom + 32}
             style={{
               fontSize: "14px",
               fontWeight: "500",
@@ -96,7 +96,7 @@ const ActivitiesGraph = (userActivities: ActivitiesGraphProps) => {
         ))}
       </g>
 
-      {/* axe des ordonnées */}
+      {/* ordonnate axis */}
       {weightMarks.map((weight, index) => (
         <Fragment key={index}>
           <text
@@ -133,7 +133,7 @@ const ActivitiesGraph = (userActivities: ActivitiesGraphProps) => {
         />
       )}
 
-      {/* colonnes des poids + calories */}
+      {/* weight and calories columns */}
       {formattedActivities.map(({ day, calories, kilogram }, index) => (
         <g key={day}>
           <path
