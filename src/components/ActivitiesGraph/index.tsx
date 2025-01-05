@@ -34,7 +34,7 @@ const ActivitiesGraph = (userActivities: ActivitiesGraphProps) => {
     }
   );
 
-  const weights = formattedActivities.map((d) => d.kilogram);
+  const weights = formattedActivities.map(({ kilogram }) => kilogram);
   const maxWeight = Math.max(...weights);
   const minWeight = Math.min(...weights);
 
@@ -46,7 +46,7 @@ const ActivitiesGraph = (userActivities: ActivitiesGraphProps) => {
     .padding(0.2);
 
   // calories column
-  const yScale = d3
+  const caloriesScale = d3
     .scaleLinear()
     .domain([0, Math.max(...formattedActivities.map(({ calories }) => calories))])
     .nice()
@@ -140,7 +140,7 @@ const ActivitiesGraph = (userActivities: ActivitiesGraphProps) => {
             d={RadiusSvg({
               xScale,
               xValue: day,
-              yScale,
+              yScale: caloriesScale,
               yValue: calories,
               height,
               width: 7,
