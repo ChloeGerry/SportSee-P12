@@ -38,6 +38,7 @@ const PerformancesGraph = (userPerformances: PerformancesGraphProps) => {
 
   const formattedPerformances = reverseFormattedPerformances.reverse();
 
+  // create performance line
   const angleSlice: number = (2 * Math.PI) / formattedPerformances.length;
   const bestPerformance: number = d3.max(formattedPerformances, ({ value }) => value) || 1;
 
@@ -53,6 +54,7 @@ const PerformancesGraph = (userPerformances: PerformancesGraphProps) => {
 
   const path = radarLine(formattedPerformances);
 
+  // create polygon structure
   const createPolygonPoints = (polygonLevel: number) => {
     const levelRadius = smallestPolygonSize * polygonLevel;
     return Array.from({ length: numberOfSides }, (_, index) => {
@@ -65,6 +67,7 @@ const PerformancesGraph = (userPerformances: PerformancesGraphProps) => {
 
   return (
     <svg width={width} height={height} className="bg-dark-grey rounded-small">
+      {/* polygon struture */}
       {[...Array(5).keys()].map((index) => {
         const polygonLevel = index + 1;
         return (
@@ -76,6 +79,7 @@ const PerformancesGraph = (userPerformances: PerformancesGraphProps) => {
         );
       })}
 
+      {/* performances line path */}
       <path
         d={path || ""}
         style={{
